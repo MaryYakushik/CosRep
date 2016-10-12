@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Laba1.Dependenses;
 using Laba1.ParametrsFunctions;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
+using System.Diagnostics;
 
 namespace Laba1
 {
@@ -17,12 +19,13 @@ namespace Laba1
     {
         private const string NO_DEPENDENSES = "no dependenses", A0 = "A0", W0 = "w0", F0 = "f0", T = "t";
         private List<ParametrsFunction> parametrsFunctions = new List<ParametrsFunction>();
+        bool poliharmonic = false;
 
         public Form1()
         {
             InitializeComponent();
             graphic.Series.Clear();
-            graphic.ChartAreas[0].AxisX.Minimum = 0;
+            graphic.ChartAreas[0].AxisX.Minimum = -25;
             graphic.ChartAreas[0].AxisX.Maximum = 25;
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
@@ -147,10 +150,10 @@ namespace Laba1
             parametrsFunctions[size].function[2].setX(comboBox3.Text);
 
             parametrsFunctions[size].mainDependenses = Dependenses.Dependenses.getMainDependenses();
-            if (results.Contains(false))
+            if (results.Contains(false) || (listBox1.Items.Contains(parametrsFunctions[size].ToString())))
             {
                 parametrsFunctions.RemoveAt(size);
-                MessageBox.Show("Проверьте правильность заполнения полей");
+                MessageBox.Show("Неправильный ввод или такая функция уже существует");
             }
             else
             {
@@ -160,12 +163,13 @@ namespace Laba1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            graphic.Series.Clear();
-            int selectedIndex = listBox1.SelectedIndex ;
+            int selectedIndex = listBox1.SelectedIndex;
             if (selectedIndex >= 0)
             {
                 listBox1.Items.RemoveAt(selectedIndex);
+                parametrsFunctions[selectedIndex].draw = false;
                 parametrsFunctions.RemoveAt(selectedIndex);
+                redrawLines();
             }
             else
             {
@@ -177,42 +181,97 @@ namespace Laba1
 
         #region Draw Lines
 
-        private void button3_Click(object sender, EventArgs e)
+        private void setDrawFalse(){
+            for (int i = 0; i < parametrsFunctions.Count(); i++)
+            {
+                parametrsFunctions[i].draw = false;
+            }
+        }
+
+        private void oneLineButton_Click(object sender, EventArgs e)
         {
             graphic.Series.Clear();
+            poliharmonic = false;
+            setDrawFalse();
             String message = "Nothing to draw. Functions box is empty or none of the lines is not selected.";
             drawLine(message);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void addLineButton_Click(object sender, EventArgs e)
         {
             String message = "Nothing to add. Functions box is empty or none of the lines is not selected.";
             drawLine(message);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void allLinesButton_Click(object sender, EventArgs e)
         {
             graphic.Series.Clear();
+            poliharmonic = false;
             string seriesName;
             for (int i = 0; i < parametrsFunctions.Count; i++)
             {
                 seriesName = "Line" + i;
+                parametrsFunctions[i].draw = true;
                 drawFunction(seriesName, i);
             }
         }
 
+        private void polyharmonicButton_Click(object sender, EventArgs e)
+        {
+            drawPoliharmonic();
+        }
+
+        private void drawPoliharmonic()
+        {
+            setDrawFalse();
+            poliharmonic = true;
+            graphic.Series.Clear();
+            graphic.Series.Add("Pol");
+            graphic.Series[0].ChartType = SeriesChartType.Line;
+            graphic.Series[0].Color = generaterandomColor();
+
+            int linesCount = listBox1.Items.Count;
+            int minGeneratedValue = (int)graphic.ChartAreas[0].AxisX.Minimum;
+            int maxGeneratedValue = (int)graphic.ChartAreas[0].AxisX.Maximum;
+            String fileName = "poliharmonicData.bin";
+            using (BinaryWriter writer = new BinaryWriter(File.Open(fileName, FileMode.Create)))
+            {
+                for (int i = minGeneratedValue; i <= maxGeneratedValue; i++)
+                {
+                    double yValue = 0;
+                    for (int j = 0; j < linesCount; j++)
+                    {
+                        yValue += getFunctionValue(i, j);
+                    }
+                    graphic.Series[0].Points.AddXY(i, yValue);
+                    writer.Write("x= " + i + "; y = " + yValue + ";\n");
+                }
+            }
+            Process.Start("C:\\Windows\\System32\\notepad.exe", fileName);
+        }
+
         private void drawLine(String message)
         {
-            int selectedIndex = listBox1.SelectedIndex;
-            string seriesName = "L" + selectedIndex;
-            if (selectedIndex >= 0)
+            if (!poliharmonic)
             {
-                drawFunction(seriesName, selectedIndex);
+                poliharmonic = false;
+                int selectedIndex = listBox1.SelectedIndex;
+                string seriesName = "L" + selectedIndex;
+                if (selectedIndex >= 0)
+                {
+                    drawFunction(seriesName, selectedIndex);
+                    parametrsFunctions[selectedIndex].draw = true;
+                }
+                else
+                {
+                    MessageBox.Show(message);
+                }
             }
             else
             {
-                MessageBox.Show(message);
+                MessageBox.Show("Impossible to add line to a poliharmonic signal.");
             }
+
         }
 
         Random random = new Random();
@@ -229,12 +288,12 @@ namespace Laba1
                 int currentSeries = graphic.Series.Count - 1;
                 graphic.Series[currentSeries].ChartType = SeriesChartType.Line;
                 graphic.Series[currentSeries].Color = generaterandomColor();
-                int countGenerateValues = (int)graphic.ChartAreas[0].AxisX.Maximum;
-                for (int t = 0; t < countGenerateValues; t++)
+                int minGeneratedValue = (int)graphic.ChartAreas[0].AxisX.Minimum;
+                int maxGeneratedValue = (int)graphic.ChartAreas[0].AxisX.Maximum;
+                for (int t = minGeneratedValue; t <= maxGeneratedValue; t++)
                 {
                     graphic.Series[currentSeries].Points.AddXY(t, getFunctionValue(t, functionNumber));
                 }
-                getFunctionValue(0, functionNumber);
             }
             else
             {
@@ -299,23 +358,49 @@ namespace Laba1
                     break;
             }
             return result;
-        } 
+        }
+
+        private void redrawLines()
+        {
+            graphic.Series.Clear();
+            if (!poliharmonic)
+            {
+                for (int i = 0; i < parametrsFunctions.Count(); i++)
+                {
+                    if (parametrsFunctions[i].draw)
+                    {
+                        string seriesName = "L" + i;
+                        drawFunction(seriesName, i);
+                    }
+                }
+            }
+            else
+            {
+                drawPoliharmonic();
+            }
+        }
 
         #endregion
+
+        #region Scale
 
         private void yDec_Click(object sender, EventArgs e)
         {
             if (graphic.ChartAreas[0].AxisY.Maximum > 0.1)
             {
                 graphic.ChartAreas[0].AxisY.Maximum -= 0.1;
+                graphic.ChartAreas[0].AxisY.Minimum += 0.1;
+                redrawLines();
             }
         }
 
         private void yInc_Click(object sender, EventArgs e)
         {
-            if (graphic.ChartAreas[0].AxisY.Maximum < 100)
+            if (graphic.ChartAreas[0].AxisY.Maximum < 10)
             {
                 graphic.ChartAreas[0].AxisY.Maximum += 0.1;
+                graphic.ChartAreas[0].AxisY.Minimum -= 0.1;
+                redrawLines();
             }
         }
 
@@ -324,6 +409,8 @@ namespace Laba1
             if (graphic.ChartAreas[0].AxisX.Maximum > 1)
             {
                 graphic.ChartAreas[0].AxisX.Maximum -= 1;
+                graphic.ChartAreas[0].AxisX.Minimum += 1;
+                redrawLines();
             }
         }
 
@@ -332,8 +419,12 @@ namespace Laba1
             if (graphic.ChartAreas[0].AxisX.Maximum < 100)
             {
                 graphic.ChartAreas[0].AxisX.Maximum += 1;
+                graphic.ChartAreas[0].AxisX.Minimum -= 1;
+                redrawLines();
             }
         }
+
+        #endregion
 
     }
 }

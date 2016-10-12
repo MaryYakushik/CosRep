@@ -11,6 +11,7 @@ namespace Laba1.ParametrsFunctions
         public List<Parametrs> function;
         public List<List<int>> mainDependenses;
         private const int countOfParametrs = 3;
+        public bool draw;
 
         public ParametrsFunction()
         {

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.graphic = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -59,16 +59,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.oneLineButton = new System.Windows.Forms.Button();
+            this.addLineButton = new System.Windows.Forms.Button();
+            this.allLinesButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.yDec = new System.Windows.Forms.Button();
-            this.yInc = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.xInc = new System.Windows.Forms.Button();
             this.xDec = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.yInc = new System.Windows.Forms.Button();
+            this.yDec = new System.Windows.Forms.Button();
+            this.polyharmonicButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.graphic)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -80,16 +81,16 @@
             // 
             // graphic
             // 
-            chartArea6.Name = "ChartArea1";
-            this.graphic.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.graphic.Legends.Add(legend6);
+            chartArea2.Name = "ChartArea1";
+            this.graphic.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.graphic.Legends.Add(legend2);
             this.graphic.Location = new System.Drawing.Point(531, 12);
             this.graphic.Name = "graphic";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "S1";
-            this.graphic.Series.Add(series6);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "S1";
+            this.graphic.Series.Add(series2);
             this.graphic.Size = new System.Drawing.Size(378, 356);
             this.graphic.TabIndex = 0;
             this.graphic.Text = "graphic";
@@ -380,35 +381,35 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "x(t) = A0 * sin( w0 * t + f0)";
             // 
-            // button3
+            // oneLineButton
             // 
-            this.button3.Location = new System.Drawing.Point(12, 339);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Draw one line";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.oneLineButton.Location = new System.Drawing.Point(12, 339);
+            this.oneLineButton.Name = "oneLineButton";
+            this.oneLineButton.Size = new System.Drawing.Size(128, 23);
+            this.oneLineButton.TabIndex = 6;
+            this.oneLineButton.Text = "Draw one line";
+            this.oneLineButton.UseVisualStyleBackColor = true;
+            this.oneLineButton.Click += new System.EventHandler(this.oneLineButton_Click);
             // 
-            // button4
+            // addLineButton
             // 
-            this.button4.Location = new System.Drawing.Point(189, 339);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(163, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Add line to graphic";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.addLineButton.Location = new System.Drawing.Point(146, 339);
+            this.addLineButton.Name = "addLineButton";
+            this.addLineButton.Size = new System.Drawing.Size(125, 23);
+            this.addLineButton.TabIndex = 7;
+            this.addLineButton.Text = "Add line to graphic";
+            this.addLineButton.UseVisualStyleBackColor = true;
+            this.addLineButton.Click += new System.EventHandler(this.addLineButton_Click);
             // 
-            // button5
+            // allLinesButton
             // 
-            this.button5.Location = new System.Drawing.Point(368, 339);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(157, 23);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Draw all lines";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.allLinesButton.Location = new System.Drawing.Point(288, 339);
+            this.allLinesButton.Name = "allLinesButton";
+            this.allLinesButton.Size = new System.Drawing.Size(111, 23);
+            this.allLinesButton.TabIndex = 8;
+            this.allLinesButton.Text = "Draw all lines";
+            this.allLinesButton.UseVisualStyleBackColor = true;
+            this.allLinesButton.Click += new System.EventHandler(this.allLinesButton_Click);
             // 
             // groupBox2
             // 
@@ -424,35 +425,6 @@
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scale";
-            // 
-            // yDec
-            // 
-            this.yDec.Location = new System.Drawing.Point(26, 22);
-            this.yDec.Name = "yDec";
-            this.yDec.Size = new System.Drawing.Size(23, 23);
-            this.yDec.TabIndex = 0;
-            this.yDec.Text = "-";
-            this.yDec.UseVisualStyleBackColor = true;
-            this.yDec.Click += new System.EventHandler(this.yDec_Click);
-            // 
-            // yInc
-            // 
-            this.yInc.Location = new System.Drawing.Point(51, 22);
-            this.yInc.Name = "yInc";
-            this.yInc.Size = new System.Drawing.Size(23, 23);
-            this.yInc.TabIndex = 1;
-            this.yInc.Text = "+";
-            this.yInc.UseVisualStyleBackColor = true;
-            this.yInc.Click += new System.EventHandler(this.yInc_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(12, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "y";
             // 
             // label5
             // 
@@ -483,15 +455,55 @@
             this.xDec.UseVisualStyleBackColor = true;
             this.xDec.Click += new System.EventHandler(this.xDec_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(12, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "y";
+            // 
+            // yInc
+            // 
+            this.yInc.Location = new System.Drawing.Point(51, 22);
+            this.yInc.Name = "yInc";
+            this.yInc.Size = new System.Drawing.Size(23, 23);
+            this.yInc.TabIndex = 1;
+            this.yInc.Text = "+";
+            this.yInc.UseVisualStyleBackColor = true;
+            this.yInc.Click += new System.EventHandler(this.yInc_Click);
+            // 
+            // yDec
+            // 
+            this.yDec.Location = new System.Drawing.Point(26, 22);
+            this.yDec.Name = "yDec";
+            this.yDec.Size = new System.Drawing.Size(23, 23);
+            this.yDec.TabIndex = 0;
+            this.yDec.Text = "-";
+            this.yDec.UseVisualStyleBackColor = true;
+            this.yDec.Click += new System.EventHandler(this.yDec_Click);
+            // 
+            // polyharmonicButton
+            // 
+            this.polyharmonicButton.Location = new System.Drawing.Point(405, 339);
+            this.polyharmonicButton.Name = "polyharmonicButton";
+            this.polyharmonicButton.Size = new System.Drawing.Size(114, 23);
+            this.polyharmonicButton.TabIndex = 10;
+            this.polyharmonicButton.Text = "Draw polyharmonic";
+            this.polyharmonicButton.UseVisualStyleBackColor = true;
+            this.polyharmonicButton.Click += new System.EventHandler(this.polyharmonicButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 374);
+            this.Controls.Add(this.polyharmonicButton);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.allLinesButton);
+            this.Controls.Add(this.addLineButton);
+            this.Controls.Add(this.oneLineButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.graphic);
@@ -546,9 +558,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button oneLineButton;
+        private System.Windows.Forms.Button addLineButton;
+        private System.Windows.Forms.Button allLinesButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button xInc;
@@ -556,6 +568,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button yInc;
         private System.Windows.Forms.Button yDec;
+        private System.Windows.Forms.Button polyharmonicButton;
     }
 }
 
