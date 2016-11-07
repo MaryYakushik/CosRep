@@ -18,7 +18,7 @@ namespace Laba1
 {
     public partial class Form1 : Form
     {
-        private const string NO_DEPENDENSES = "no dependenses", A0 = "A0", W0 = "w0", F0 = "f0", T = "t";
+        private const string NO_DEPENDENSES = "no dependenses", A0 = "A0", W0 = "w0", F0 = "φ0", T = "t";
         private List<ParametrsFunction> parametrsFunctions = new List<ParametrsFunction>();
         bool poliharmonic = false;
 

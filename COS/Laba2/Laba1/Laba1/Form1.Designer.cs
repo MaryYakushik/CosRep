@@ -135,7 +135,7 @@
             this.groupF0.Size = new System.Drawing.Size(254, 82);
             this.groupF0.TabIndex = 8;
             this.groupF0.TabStop = false;
-            this.groupF0.Text = "f0";
+            this.groupF0.Text = "φ0";
             // 
             // f0ParametrBox
             // 
@@ -169,9 +169,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.Location = new System.Drawing.Point(50, 48);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 17);
+            this.label9.Size = new System.Drawing.Size(41, 17);
             this.label9.TabIndex = 8;
-            this.label9.Text = "f0 = ";
+            this.label9.Text = "φ0 = ";
             // 
             // label10
             // 
@@ -350,9 +350,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(13, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 25);
+            this.label1.Size = new System.Drawing.Size(245, 25);
             this.label1.TabIndex = 5;
-            this.label1.Text = "x(t) = A0 * sin( w0 * t + f0)";
+            this.label1.Text = "x(t) = A0 * sin( w0 * t + φ0)";
             // 
             // oneLineButton
             // 
