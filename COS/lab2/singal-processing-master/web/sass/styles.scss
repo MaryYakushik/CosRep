@@ -1,0 +1,60 @@
+@import 'materialize';
+
+	.collapsible-header.active {
+		background-color: rgba(30, 136, 229, 0.24);
+	}
+
+@media only screen and (max-width : 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}
+html, body {
+	height: 100%;
+}
+
+.login-logo {
+  padding-top: 10px;
+}
+
+.wrapper {
+	display : flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+}
+
+.row .col.s3 {
+	padding-top: 40px;
+}
+.container {
+	flex: 1 0 auto;
+}
+footer {
+	flex : 0 0 auto;
+}
+.side-nav .userView{
+	overflow: hidden;
+	position: relative;
+	padding: 10px 10px 0;
+	margin-bottom: 10px;
+}
+
+.side-nav a {
+	color: rgba(0,0,0,0.87);
+	display: block;
+	font-size: 14px;
+	font-weight: 500;
+	height: 48px;
+	line-height: 48px;
+	padding: 0 32px;
+}
+
+.side-nav .userView .circle {
+	height: 64px;
+	width: 64px;
+}
+
+.side-nav .userView .circle, .side-nav .userView .name, .side-nav .userView .balance {
+	display: block;
+}
